@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">CenterMedic</string>
+    <string name="edtCorreo">Correo</string>
+    <string name="edtContraseña">Contraseña</string>
+    <string name="btnAceptar">Iniciar Sesion</string>
+    <string name="btnRegistro">Registrarse</string>
+    <string name="edtnombre">Nombre</string>
+    <string name="edtapellido">Apellido</string>
+    <string name="edtrepetir">Repetir Contraseña</string>
+    <string name="edttelefono">Telefono</string>
+
+
+    //menu
+    <string name="btnregistrarcita">Registrar cita</string>
+    <string name="btnmostrarcitas">Citas pendientes</string>
+    <string name="btnacercade">Acerca de la aplicacion</string>
+    <string name="btnubicaciones">Hospitales</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/txtdato"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:orientation="vertical"
+    tools:context=".menu">
+
+    <Button
+        android:id="@+id/btnregistrarcita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="registro"
+        android:text="@string/btnregistrarcita"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="334dp" />
+
+    <Button
+        android:id="@+id/btnvercitas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ver"
+        android:text="@string/btnmostrarcitas"
+        tools:layout_editor_absoluteX="241dp"
+        tools:layout_editor_absoluteY="334dp" />
+
+    <Button
+        android:id="@+id/btnhospitales"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnubicaciones"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="466dp" />
+
+    <Button
+        android:id="@+id/btnacercade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnacercade"
+        tools:layout_editor_absoluteX="248dp"
+        tools:layout_editor_absoluteY="466dp" />
+</LinearLayout>

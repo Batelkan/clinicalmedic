@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "713950159471",
+    "firebase_url": "https://centermedic-307a5.firebaseio.com",
+    "project_id": "centermedic-307a5",
+    "storage_bucket": "centermedic-307a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713950159471:android:2bd698161510c0eedfa39a",
+        "android_client_info": {
+          "package_name": "com.example.centermedic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "713950159471-j1jh891gcdgqe00ils6jicbu6oed4111.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.centermedic",
+            "certificate_hash": "1610f34562af4a03bdb09c3f5ab9cc62d7917d33"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMT-wpBMNvOh6Ft2VNpPyQTjxZyk9Y2Lo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

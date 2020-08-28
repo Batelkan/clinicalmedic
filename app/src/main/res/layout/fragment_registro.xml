@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context=".Fragment_registro">
+
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/registro" />
+
+    <EditText
+        android:id="@+id/edtarea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Area" />
+
+    <EditText
+        android:id="@+id/edtMedico"
+        android:hint="Medico"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.skydoves.powerspinner.PowerSpinnerView
+        android:id="@+id/sphospital"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textfile"
+        android:gravity="start"
+        android:hint="Seleccione un hospital"
+        android:padding="10dp"
+        android:textColor="#000"
+        android:textColorHint="#9e9e9e"
+        android:textSize="16sp"
+        app:spinner_arrow_gravity="end"
+        app:spinner_arrow_padding="8dp"
+        app:spinner_divider_color="#424242"
+        app:spinner_divider_show="true"
+        app:spinner_divider_size="0.4dp"
+        app:spinner_popup_animation="dropdown"
+        app:spinner_popup_background="#fff"
+        app:spinner_popup_elevation="14dp" />
+
+    <EditText
+        android:id="@+id/edtfecha"
+        android:hint="Fecha"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"/>
+
+    <EditText
+        android:id="@+id/edthorario"
+        android:hint="Horario"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time" />
+
+    <Button
+        android:id="@+id/btnregistrar_cita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="#AE1D4E"
+        android:text="Registrar cita" />
+
+</LinearLayout>
