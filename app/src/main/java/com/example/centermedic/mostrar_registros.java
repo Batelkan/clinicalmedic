@@ -55,7 +55,9 @@ public class mostrar_registros extends AppCompatActivity {
                         String Horario = ds.child("Horario").getValue().toString();
                         String Fecha = ds.child("Fecha").getValue().toString();
                         String uuid = ds.child("uuid").getValue().toString();
-                        marray.add(new citas(Area, Medico, Hospital, Fecha, Horario, uuid));
+                        String lon = ds.child("Longitud").getValue().toString();
+                        String lat = ds.child("Latitud").getValue().toString();
+                        marray.add(new citas(Area, Medico, Hospital, Fecha, Horario, uuid,lon,lat));
                         Log.d("num encontrados", Integer.toString(marray.size()));
                     }
                 iniciarLista();

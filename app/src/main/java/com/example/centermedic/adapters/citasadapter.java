@@ -1,6 +1,7 @@
 package com.example.centermedic.adapters;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +64,7 @@ public class citasadapter extends RecyclerView.Adapter<citasadapter.CitaViewHold
 
         personViewHolder.hospital.setText(citaslist.get(i).getHospital().toString());
         personViewHolder.doctor.setText(citaslist.get(i).getMedico().toString() +" - "+ citaslist.get(i).getArea().toString());
-        personViewHolder.fecha.setText(citaslist.get(i).getFecha().toString() +" / "+  citaslist.get(i).getHorario().toString());
+        personViewHolder.fecha.setText("Fecha: "+citaslist.get(i).getFecha().toString() +" - Horario: "+  citaslist.get(i).getHorario().toString());
 
 
        /* personViewHolder.tel.setOnClickListener(
@@ -94,8 +95,7 @@ public class citasadapter extends RecyclerView.Adapter<citasadapter.CitaViewHold
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                       // Uri gmmIntentUri = Uri.parse("geo:"+ citaslist.get(i).getLongitud()+","+citaslist.get(i).getLatitud()+"");
-                        Uri gmmIntentUri = Uri.parse("geo:20.9800655,-89.6329183");
+                        Uri gmmIntentUri = Uri.parse("geo:"+ citaslist.get(i).getLatitud()+","+citaslist.get(i).getLongitud()+"?z=10&q="+citaslist.get(i).getHospital());
                         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                         mapIntent.setPackage("com.google.android.apps.maps");
                         v.getContext().startActivity(mapIntent);

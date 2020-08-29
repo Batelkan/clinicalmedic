@@ -51,13 +51,13 @@
 
             <Button
                 android:id="@+id/cv_mapa"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_width="98dp"
+                android:layout_height="84dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="10dp"
-
+                android:layout_marginEnd="7dp"
                 android:background="@drawable/button_shape"
-                android:drawableStart="@mipmap/ic_map"
+                android:drawableStart="@mipmap/ic_maphospital_foreground"
+                android:scaleType="centerInside"
                 tools:ignore="RtlCompat" />
 
 

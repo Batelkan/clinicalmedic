@@ -1,12 +1,15 @@
 package com.example.centermedic;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +17,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.centermedic.models.citas;
 import com.google.firebase.FirebaseApp;
@@ -28,11 +34,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.skydoves.powerspinner.OnSpinnerItemSelectedListener;
 import com.skydoves.powerspinner.PowerSpinnerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -54,6 +64,15 @@ public class Fragment_registro extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    //valriables para la fecha
+    private static final String CERO = "0";
+    private static final String BARRA = "/";
+    public final Calendar c = Calendar.getInstance();
+    final int mes = c.get(Calendar.MONTH);
+    final int dia = c.get(Calendar.DAY_OF_MONTH);
+    final int anio = c.get(Calendar.YEAR);
+    final int hora = c.get(Calendar.HOUR_OF_DAY);
+    final int minuto = c.get(Calendar.MINUTE);
     //variables
     EditText area;
     EditText medico;
@@ -62,23 +81,8 @@ public class Fragment_registro extends Fragment {
     EditText fecha;
     Button registrar_cita;
     DatabaseReference mrootreference;
-    String[] hopitales ={"Clinica Santa Maria", "Clinica Merida", "Clinica Pensiones", "Centro de Especialidades Medicas", "Star Medica"};
     String Hospital = "";
-    public Fragment_registro() {
 
-
-
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment_registro.
-     */
-    // TODO: Rename and change types and number of parameters
     public static Fragment_registro newInstance(String param1, String param2) {
         Fragment_registro fragment = new Fragment_registro();
         Bundle args = new Bundle();
@@ -120,8 +124,7 @@ public class Fragment_registro extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         ProgressDialog progressDialog = new ProgressDialog(this.getContext());
 
         //progressDialog.setMessage("Un momento porfavor...");
@@ -129,71 +132,126 @@ public class Fragment_registro extends Fragment {
 
         // Inflate the layout for this fragment
         View root=inflater.inflate(R.layout.fragment_registro, container, false);
-
         mrootreference = FirebaseDatabase.getInstance().getReference();
-
         getdatosHospitales();
-       // Spinner spinner = (Spinner) root.findViewById(R.id.sphospital);
+
         pwspinner = (PowerSpinnerView) root.findViewById(R.id.sphospital);
-        //dataAdapter = new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_spinner_item,listHospitales);
-       /* hintAdapter = new HintAdapter<String>(this.getContext(),android.R.layout.simple_spinner_item,"Seleccione un hospital",listHospitales);
-        hintAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(hintAdapter);*/
 
         final TextView Area = root.findViewById(R.id.edtarea);
         final TextView Medico = root.findViewById(R.id.edtMedico);
         final TextView Horario = root.findViewById(R.id.edthorario);
         final EditText Fecha = root.findViewById(R.id.edtfecha);
         final Button registrar= root.findViewById(R.id.btnregistrar_cita);
-
-/*
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item =(String) parent.getItemAtPosition(position);
+        pwspinner.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener<String>() {
+            @Override public void onItemSelected(int position, String item) {
                 Hospital = item;
             }
-
+        });
+        Fecha.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
+            public void onClick(View v) {
+                obtenerFecha(Fecha);
             }
         });
-*/
+        Horario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               obtenerHora(Horario);
+            }
+        });
+
 
         //Metodo Boton para Guardados en firebase
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String area = Area.getText().toString();
                 String medico = Medico.getText().toString();
                 String horario = Horario.getText().toString();
                 String fecha = Fecha.getText().toString();
-
                 FirebaseAuth Auth = FirebaseAuth.getInstance();
                 String uuidUser = Auth.getCurrentUser().getUid();
-
-                Map<String, String> registrocitas = new HashMap<>();
+                final Map<String, String>  registrocitas = new HashMap<>();
                 registrocitas.put("Area", area);
                 registrocitas.put("Hospital", Hospital);
                 registrocitas.put("Medico", medico);
                 registrocitas.put("Horario", horario);
                 registrocitas.put("Fecha", fecha);
                 registrocitas.put("uuid",uuidUser);
+                //Consulta Ubicacion del hospital
+                Query queryMap = mdatabase.child("Hospitales").orderByChild("nombre").equalTo(Hospital);
+                queryMap.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot ds :snapshot.getChildren()) {
+                            registrocitas.put("Longitud", ds.child("longitud").getValue().toString());
+                            registrocitas.put("Latitud",ds.child("latitud").getValue().toString());
+                        }
+                        mrootreference.child("Citas").push().setValue(registrocitas);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
 
-                mrootreference.child("Citas").push().setValue(registrocitas);
-
+                Toast toast =  Toast.makeText(view.getContext(),"Cita registrada con exito",Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
                 Area.setText("");
                 Medico.setText("");
                 Horario.setText("");
                 Fecha.setText("");
+                pwspinner.clearSelectedItem();
             }
         });
-
-
         return root;
+    }
 
+    private void obtenerFecha(final EditText fec){
+        DatePickerDialog recogerFecha = new DatePickerDialog(this.getContext(), new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
+                final int mesActual = month + 1;
+                //Formateo el día obtenido: antepone el 0 si son menores de 10
+                String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
+                //Formateo el mes obtenido: antepone el 0 si son menores de 10
+                String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
+                //Muestro la fecha con el formato deseado
+                fec.setText(diaFormateado + BARRA + mesFormateado + BARRA + year);
+            }
+            //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
+            /**
+             *También puede cargar los valores que usted desee
+             */
+        },anio, mes, dia);
+        //Muestro el widget
+        recogerFecha.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        recogerFecha.show();
+    }
 
+    private void obtenerHora(final TextView hrs){
+        TimePickerDialog recogerHora = new TimePickerDialog(this.getContext(), new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                //Formateo el hora obtenido: antepone el 0 si son menores de 10
+                String horaFormateada =  (hourOfDay < 10)? String.valueOf(CERO + hourOfDay) : String.valueOf(hourOfDay);
+                //Formateo el minuto obtenido: antepone el 0 si son menores de 10
+                String minutoFormateado = (minute < 10)? String.valueOf(CERO + minute):String.valueOf(minute);
+                //Obtengo el valor a.m. o p.m., dependiendo de la selección del usuario
+                String AM_PM;
+                if(hourOfDay < 12) {
+                    AM_PM = "a.m.";
+                } else {
+                    AM_PM = "p.m.";
+                }
+                //Muestro la hora con el formato deseado
+                hrs.setText(horaFormateada + ":" + minutoFormateado + " " + AM_PM);
+            }
+            //Estos valores deben ir en ese orden
+            //Al colocar en false se muestra en formato 12 horas y true en formato 24 horas
+            //Pero el sistema devuelve la hora en formato 24 horas
+        }, hora, minuto, false);
+        recogerHora.show();
     }
 }

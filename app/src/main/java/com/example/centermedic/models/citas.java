@@ -50,7 +50,7 @@ public class citas {
     {
 
     }
-    public  citas(String Area, String Medico, String Hospital,String Fecha, String Horario,String uuid)
+    public  citas(String Area, String Medico, String Hospital,String Fecha, String Horario,String uuid,String lon,String lat)
     {
         this.Area= Area;
         this.Medico=Medico;
@@ -58,6 +58,8 @@ public class citas {
         this.Fecha= Fecha;
         this.Horario = Horario;
         this.uuid = uuid;
+        this.Longitud = lon;
+        this.Latitud = lat;
 
     }
 
