@@ -3,6 +3,7 @@ package com.example.centermedic;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -99,6 +100,10 @@ public class Fragment_registro extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        try {
+           String  tempH =  getActivity().getIntent().getStringExtra("referenceMapTitle");
+            Hospital = tempH.isEmpty() ? "" :tempH;
+        }catch (Exception ex){}
         mdatabase= FirebaseDatabase.getInstance().getReference();
 
     }
@@ -115,6 +120,11 @@ public class Fragment_registro extends Fragment {
                 }
 
                 pwspinner.setItems(listHospitales);
+                if(!Hospital.isEmpty())
+                {
+                    listHospitales.indexOf(Hospital);
+                    pwspinner.selectItemByIndex(listHospitales.indexOf(Hospital));
+                }
             }
 
             @Override
@@ -202,6 +212,7 @@ public class Fragment_registro extends Fragment {
                 Horario.setText("");
                 Fecha.setText("");
                 pwspinner.clearSelectedItem();
+                startActivity(new Intent(Fragment_registro.this.getContext(), menu.class));
             }
         });
         return root;

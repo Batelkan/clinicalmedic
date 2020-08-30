@@ -95,7 +95,7 @@ public class citasadapter extends RecyclerView.Adapter<citasadapter.CitaViewHold
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Uri gmmIntentUri = Uri.parse("geo:"+ citaslist.get(i).getLatitud()+","+citaslist.get(i).getLongitud()+"?z=10&q="+citaslist.get(i).getHospital());
+                        Uri gmmIntentUri = Uri.parse("geo:"+ citaslist.get(i).getLatitud()+","+citaslist.get(i).getLongitud()+"?z=10&q="+citaslist.get(i).getHospital()+", Merida Yucatan");
                         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                         mapIntent.setPackage("com.google.android.apps.maps");
                         v.getContext().startActivity(mapIntent);

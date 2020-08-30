@@ -74,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        startActivity(new Intent(MainActivity.this, menu.class));
-                       /*
                         if (task.isSuccessful()) {
                             progressDialog.hide();
                             Toast.makeText(getApplicationContext(),"Inicio de sesion exitoso",Toast.LENGTH_LONG).show();
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         else
                         {
                             Toast.makeText(getApplicationContext(),"Usario invalido",Toast.LENGTH_LONG).show();
-                        }*/
+                        }
                     }
                 });
 

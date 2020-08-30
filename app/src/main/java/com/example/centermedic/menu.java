@@ -35,13 +35,11 @@ public class menu extends AppCompatActivity {
     public void ver(View v)
     {
         startActivity(new Intent(menu.this, mostrar_registros.class));
-
-
     }
 
     public void mapa(View v)
     {
-
+        startActivity(new Intent(menu.this, map.class));
     }
     public void acercade(View v)
     {

@@ -23,7 +23,6 @@ public class Registrocita extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrocita);
-
         //inicializacion
         Fragment_registro fragmentRegistro = new Fragment_registro();
         FragmentManager manager=getSupportFragmentManager();
