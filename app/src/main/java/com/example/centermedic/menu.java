@@ -43,7 +43,7 @@ public class menu extends AppCompatActivity {
     }
     public void acercade(View v)
     {
-
+        startActivity(new Intent(menu.this, credits.class));
     }
 }
 

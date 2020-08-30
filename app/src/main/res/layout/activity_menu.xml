@@ -4,59 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/txtdato"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="20dp"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="false"
+    android:layout_centerHorizontal="false"
+    android:layout_centerVertical="true"
+    android:background="@drawable/gradienbgcard"
     android:orientation="vertical"
-    android:paddingTop="20dp"
-    android:paddingBottom="20dp"
+    android:padding="20dp"
+    app:layout_anchorGravity="center"
+    android:gravity="center_vertical"
     tools:context=".menu">
 
     <Button
         android:id="@+id/btnregistrarcita"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/layoutroundet_bg"
         android:onClick="registro"
         android:text="@string/btnregistrarcita"
-        android:layout_marginBottom="10dp"
-        tools:layout_editor_absoluteX="50dp"
         android:textColor="#039be5"
-        android:background="@drawable/layoutroundet_bg"
+        tools:layout_editor_absoluteX="50dp"
         tools:layout_editor_absoluteY="334dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/btnvercitas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/layoutroundet_bg"
         android:onClick="ver"
         android:text="@string/btnmostrarcitas"
-        android:layout_marginBottom="10dp"
-        tools:layout_editor_absoluteX="241dp"
         android:textColor="#039be5"
-        android:background="@drawable/layoutroundet_bg"
+        tools:layout_editor_absoluteX="241dp"
         tools:layout_editor_absoluteY="334dp" />
-
+    <Space
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content" />
     <Button
         android:id="@+id/btnhospitales"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/layoutroundet_bg"
         android:onClick="mapa"
         android:text="@string/btnubicaciones"
         android:textColor="#039be5"
-        android:background="@drawable/layoutroundet_bg"
         tools:layout_editor_absoluteX="50dp"
         tools:layout_editor_absoluteY="466dp" />
-
+    <Space
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content" />
     <Button
         android:id="@+id/btnacercade"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/layoutroundet_bg"
         android:onClick="acercade"
         android:text="@string/btnacercade"
         android:textColor="#039be5"
-        android:background="@drawable/layoutroundet_bg"
         tools:layout_editor_absoluteX="248dp"
         tools:layout_editor_absoluteY="466dp" />
 </LinearLayout>

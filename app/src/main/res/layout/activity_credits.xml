@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradienbg"
+    tools:context=".credits">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="359dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/info_header"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:height="80dp"
+                android:padding="9dp"
+                android:text="Somos un equipo encargado de brindar un servicio personalizado de citas medicas"
+                android:textAlignment="center"
+                android:textColor="#2196F3"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="168dp"
+                android:scaleX=".8"
+                android:scaleY=".8"
+                app:srcCompat="@drawable/registro" />
+            <TextView
+                android:id="@+id/info_body"
+                android:height="100dp"
+                android:text="La aplicación Center Medic permite recordar a los usuarios citas agendadas, evitando faltas, demoras u cancelaciones"
+                android:textAlignment="center"
+                android:padding="9dp"
+                android:textColor="#2196F3"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <View
+                android:id="@+id/divider"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="409dp"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="615dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="542dp">
+                <ImageButton
+                    android:id="@+id/imgbtnmap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="65dp"
+                    android:background="#fff"
+                    android:layout_marginLeft="20dp"
+                    android:scaleX=".8"
+                    android:onClick="iralocacion"
+                    android:scaleY=".8"
+                    app:srcCompat="@mipmap/ic_btnmapblue_round" />
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/imgbtnmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="65dp"
+                    android:background="#fff"
+                    android:onClick="enviarcorreo"
+                    android:scaleX=".8"
+                    android:scaleY=".8"
+                    app:srcCompat="@mipmap/ic_btnmailblue_round" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/imgbtnphone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="65dp"
+                    android:onClick="llamar"
+                    android:background="#fff"
+                    android:layout_marginRight="20dp"
+                    android:scaleX=".8"
+                    android:scaleY=".8"
+                    app:srcCompat="@mipmap/ic_btnphoneblue_round" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
